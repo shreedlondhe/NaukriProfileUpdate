@@ -8,8 +8,7 @@ viewProfile:Locator;
 Resumeheadline:Locator;
 resumeHeadlineTxt:Locator;
 saveButton:Locator; 
-prfofileText:string=`Software Test Engineer having 6+ years of experience in Manual Testing, Automation Testing 
-Selenium with Java/Python-TestNG/Robot/Pytest, Cucumber Database SQL/MongoDBTesting,API/Automation Testing.`
+prfofileText:string=`Software Test Engineer with 6+ years of experience in Manual and Automation Testing. Expertise in building and maintaining automation frameworks using Selenium (Java/Python) and Playwright (JavaScript). Strong experience in API Automation Testing, including validation of complex response structures`
 
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
