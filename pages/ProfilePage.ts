@@ -3,7 +3,7 @@ import Utils from "../utils/utils";
 import { log } from "../utils/Logs";
 
 export default  class ProfilePage {
-
+filePath:string=`C:\\Users\\DELL\\Desktop\\resume\\SDET 6 yrs Immediate joiner.pdf`;
 viewProfile:Locator;
 Resumeheadline:Locator;
 resumeHeadlineTxt:Locator;
@@ -21,6 +21,7 @@ async clickViewProfile(){
     await Utils.click(this.viewProfile, "Clicked on view profile link");
 }
 
+
 async updateResume(){
     log("Updating resume...");
      const [fileChooser] = await Promise.all([
@@ -28,8 +29,9 @@ async updateResume(){
         
      this.page.getByRole('button', { name: 'Update resume' }).click()
 ]);
-     await fileChooser.setFiles(`C:\\Users\\DELL\\Desktop\\resume\\SDET 6 yrs Immediate joiner.pdf`);
-    log("Resume updated successfully");
+     await fileChooser.setFiles(this.filePath);
+     await this.page.waitForTimeout(10000);
+    log("Resume updated successfully at time " + await this.timestamp());
 }
 
 async updateProfileHeading(){
@@ -40,4 +42,18 @@ async updateProfileHeading(){
     await Utils.click(this.saveButton, "Clicked on save button");
     log("Profile heading updated successfully");
 }
+async timestamp(): Promise<string> {
+    const now = new Date();
+
+const formatted =
+  now.getDate().toString().padStart(2, '0') + '-' +
+  (now.getMonth() + 1).toString().padStart(2, '0') + '-' +
+  now.getFullYear() + ' ' +
+  now.getHours().toString().padStart(2, '0') + ':' +
+  now.getMinutes().toString().padStart(2, '0') + ':' +
+  now.getSeconds().toString().padStart(2, '0');
+
+return formatted;
+}
+
 }
