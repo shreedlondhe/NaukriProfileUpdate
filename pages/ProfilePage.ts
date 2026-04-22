@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, Response } from "@playwright/test";
 import Utils from "../utils/utils";
 import { log } from "../utils/Logs";
 
@@ -20,10 +20,43 @@ constructor(private page: Page){
 async clickViewProfile(){
     await Utils.click(this.viewProfile, "Clicked on view profile link");
 }
+createAdvResumeListener() {
+    return new Promise<{ status: number; body: any; url: string }>((resolve) => {
 
+        const listener = async (response: Response) => {
+            const responseUrl = Array.isArray(response.url()) ? response.url()[0] : response.url();
+            if (
+                responseUrl.includes('/resman-aggregator-services/') &&
+                responseUrl.includes('/advResume') &&
+                response.request().method() === 'POST' // or PUT (check actual)
+            ) {
+                const status = response.status();
+                let body;
+
+                try {
+                    body = await response.json();
+                } catch {
+                    body = await response.text();
+                }
+
+                // Remove listener after capturing
+                this.page.removeListener('response', listener);
+
+                resolve({
+                    status,
+                    body,
+                    url: responseUrl
+                });
+            }
+        };
+
+        this.page.on('response', listener);
+    });
+}
 
 async updateResume(){
     log("Updating resume...");
+     const apiPromise = this.createAdvResumeListener();
      const [fileChooser] = await Promise.all([
      this.page.waitForEvent('filechooser'),
         
@@ -31,6 +64,19 @@ async updateResume(){
 ]);
      await fileChooser.setFiles(this.filePath);
      await this.page.waitForTimeout(10000);
+
+      const { status, body, url } = await apiPromise;
+
+   
+    log("API Status: " + status);
+    log("API Response: " + JSON.stringify(body));
+
+    if (status === 200) {
+        log("Adv Resume API success " );
+    } else {
+        log("Adv Resume API failed");
+    }
+
     log("Resume updated successfully at time " + await this.timestamp());
 }
 
