@@ -21,7 +21,7 @@ test.describe("Naukri Profile Update", async () => {
 
  test.afterEach(async({page})=>{
     log(`${test.info().title} Test completed. Closing the browser.`);
-    await page.waitForTimeout(10000);
+
 
     
  })
