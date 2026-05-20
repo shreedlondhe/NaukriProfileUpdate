@@ -16,6 +16,12 @@ constructor(private page: Page){
     this.resumeHeadlineTxt=page.locator("#resumeHeadlineTxt");
     this.saveButton=page.locator("//button[.='Save']");
 }
+async getRandomDots(): Promise<string> {
+  const dots = [".", "..", "...","....", "....."];
+  const randomIndex = Math.floor(Math.random() * dots.length);
+  return dots[randomIndex];
+}
+
 
 async clickViewProfile(){
     await Utils.click(this.viewProfile, "Clicked on view profile link");
@@ -84,7 +90,7 @@ async updateProfileHeading(){
     log("Updating profile heading...");
     await Utils.click(this.Resumeheadline, "Clicked on resume headline edit icon");
     await Utils.click(this.resumeHeadlineTxt, "Clicked on profile heading input field");
-    await Utils.fill(this.resumeHeadlineTxt, this.prfofileText, "Filled profile heading input field");
+    await Utils.fill(this.resumeHeadlineTxt, this.prfofileText+await this.getRandomDots(), "Filled profile heading input field");
     await Utils.click(this.saveButton, "Clicked on save button");
     log("Profile heading updated successfully");
 }
