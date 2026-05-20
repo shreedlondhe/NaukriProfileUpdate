@@ -8,7 +8,7 @@ viewProfile:Locator;
 Resumeheadline:Locator;
 resumeHeadlineTxt:Locator;
 saveButton:Locator; 
-prfofileText:string=`Software Test Engineer with 6+ years of experience in Manual and Automation Testing. Expertise in building and maintaining automation frameworks using Selenium (Java/Python) and Playwright (JavaScript). Strong experience in API Automation Testing, including validation of complex response structures`
+prfofileText:string=`Software Test Engineer with 6+ years of experience in Manual and Automation Testing. Expertise in building and maintaining automation frameworks using Selenium (Java/Python) and Playwright (JavaScript). Strong experience in API Automation Testing`
 
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
