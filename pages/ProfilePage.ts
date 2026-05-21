@@ -8,12 +8,12 @@ viewProfile:Locator;
 Resumeheadline:Locator;
 resumeHeadlineTxt:Locator;
 saveButton:Locator; 
-prfofileText:string=`Software Test Engineer with 6+ years of experience in Manual and Automation Testing. Expertise in building and maintaining automation frameworks using Selenium (Java/Python) and Playwright (JavaScript). Strong experience in API Automation Testing`
+prfofileText:string=`Dynamic Senior Test Engineer specializing in Selenium, Playwright, and API Testing, with proven expertise in automation frameworks, database validation, and CI/CD integration, committed to enhancing software quality and testing efficiency`
 
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
     this.Resumeheadline=page.locator("//span[.='Resume headline']/following-sibling::span");
-    this.resumeHeadlineTxt=page.locator("#resumeHeadlineTxt");
+    this.resumeHeadlineTxt=page.locator("#resumeHeadline");
     this.saveButton=page.locator("//button[.='Save']");
 }
 async getRandomDots(): Promise<string> {
