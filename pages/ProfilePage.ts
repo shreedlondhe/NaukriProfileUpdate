@@ -8,13 +8,19 @@ viewProfile:Locator;
 Resumeheadline:Locator;
 resumeHeadlineTxt:Locator;
 saveButton:Locator; 
-prfofileText:string=`Dynamic Senior Test Engineer specializing in Selenium, Playwright, and API Testing, with proven expertise in automation frameworks, database validation, and CI/CD integration, committed to enhancing software quality and testing efficiency`
+ResumeText:string=`Dynamic Senior Test Engineer specializing in Selenium, Playwright, and API Testing, with proven expertise in automation frameworks, database validation, and CI/CD integration, committed to enhancing software quality and testing efficiency`
+editProfileButton:Locator;
+profileHeadlineTxt:Locator;
+profileText=`Results-driven Software Test Engineer with over 6.5+ years of comprehensive experience in Manual and Automation Testing, specializing in developing robust automation frameworks using Selenium and Playwright. Currently serving as a Senior Test Engineer at Xoriant Solutions, I have demonstrated proficiency in executing complex testing scenarios, including API, UI, and database testing, while enhancing test efficiency through innovative script generation tools like Agentic AI. I possess a strong track record in optimizing regression suites, significantly reducing testing effort, and integrating automation into CI/CD pipelines with Jenkins in Agile environments. My technical acumen includes expertise in TypeScript, Postman, and AWS, coupled with a solid foundation in civil engineering, making me adept at maintaining high-quality standards in software delivery.`
 
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
     this.Resumeheadline=page.locator("//span[.='Resume headline']/following-sibling::span");
     this.resumeHeadlineTxt=page.locator("#resumeHeadline");
     this.saveButton=page.locator("//button[.='Save']");
+    this.editProfileButton=page.locator("//span[.='Profile summary']/../div/following-sibling::span");
+    this.profileHeadlineTxt=page.locator("#profileSummaryTxt");
+    
 }
 async getRandomDots(): Promise<string> {
   const dots = [".", "..", "...","....", "....."];
@@ -25,6 +31,7 @@ async getRandomDots(): Promise<string> {
 
 async clickViewProfile(){
     await Utils.click(this.viewProfile, "Clicked on view profile link");
+ 
 }
 createAdvResumeListener() {
     return new Promise<{ status: number; body: any; url: string }>((resolve) => {
@@ -86,13 +93,22 @@ async updateResume(){
     log("Resume updated successfully at time " + await this.timestamp());
 }
 
-async updateProfileHeading(){
-    log("Updating profile heading...");
+async updateProfileHeading(){ 
+     log("Updating resume heading...");
+    await Utils.click(this.editProfileButton,"Clicked on Profile headline edit icon")
+    await Utils.click(this.profileHeadlineTxt, "Clicked on view profile link");
+    await Utils.fill(this.profileHeadlineTxt,this.profileText+await this.getRandomDots(),"Fiiled profile text")
+     await Utils.click(this.saveButton, "Clicked on save button");
+    log("Profile heading updated successfully");
+}
+
+async updateResumeHeading(){
+    log("Updating resume heading...");
     await Utils.click(this.Resumeheadline, "Clicked on resume headline edit icon");
     await Utils.click(this.resumeHeadlineTxt, "Clicked on profile heading input field");
-    await Utils.fill(this.resumeHeadlineTxt, this.prfofileText+await this.getRandomDots(), "Filled profile heading input field");
+    await Utils.fill(this.resumeHeadlineTxt, this.ResumeText+await this.getRandomDots(), "Filled Resume heading input field");
     await Utils.click(this.saveButton, "Clicked on save button");
-    log("Profile heading updated successfully");
+    log("Resume heading updated successfully");
 }
 async timestamp(): Promise<string> {
     const now = new Date();

@@ -31,8 +31,12 @@ test.describe("Naukri Profile Update", async () => {
 await profilePage.updateResume();
 
   });
-    test("Profile Heading Update", async ({ page }) => {
+  test("Profile Heading Update", async ({ page }) => {
 await profilePage.updateProfileHeading();
+
+  });
+    test("Resume Heading Update", async ({ page }) => {
+await profilePage.updateResumeHeading();
 
   });
 
