@@ -18,7 +18,7 @@ constructor(private page: Page){
     this.Resumeheadline=page.locator("//span[.='Resume headline']/following-sibling::span");
     this.resumeHeadlineTxt=page.locator("#resumeHeadline");
     this.saveButton=page.locator("//button[.='Save']");
-    this.editProfileButton=page.locator("//span[.='Profile summary']/../div/following-sibling::span");
+    this.editProfileButton=page.locator("(//span[.='editOneTheme'])[22]");
     this.profileHeadlineTxt=page.locator("#profileSummaryTxt");
     
 }
@@ -95,7 +95,12 @@ async updateResume(){
 
 async updateProfileHeading(){ 
      log("Updating resume heading...");
-    await Utils.click(this.editProfileButton,"Clicked on Profile headline edit icon")
+   
+   for (let i = 0; i < 5; i++) {
+    await this.page.keyboard.press('PageDown');
+    await this.page.waitForTimeout(1000);
+}
+   await Utils.click(this.editProfileButton,"Clicked on Profile headline edit icon")
     await Utils.click(this.profileHeadlineTxt, "Clicked on view profile link");
     await Utils.fill(this.profileHeadlineTxt,this.profileText+await this.getRandomDots(),"Fiiled profile text")
      await Utils.click(this.saveButton, "Clicked on save button");
