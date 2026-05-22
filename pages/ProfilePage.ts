@@ -99,7 +99,7 @@ async updateProfileHeading(){
     await Utils.click(this.profileHeadlineTxt, "Clicked on view profile link");
     await Utils.fill(this.profileHeadlineTxt,this.profileText+await this.getRandomDots(),"Fiiled profile text")
      await Utils.click(this.saveButton, "Clicked on save button");
-    log("Profile heading updated successfully");
+    log("Profile heading updated successfully "+ await this.timestamp());
 }
 
 async updateResumeHeading(){
@@ -108,7 +108,7 @@ async updateResumeHeading(){
     await Utils.click(this.resumeHeadlineTxt, "Clicked on profile heading input field");
     await Utils.fill(this.resumeHeadlineTxt, this.ResumeText+await this.getRandomDots(), "Filled Resume heading input field");
     await Utils.click(this.saveButton, "Clicked on save button");
-    log("Resume heading updated successfully");
+    log("Resume heading updated successfully "+ await this.timestamp());
 }
 async timestamp(): Promise<string> {
     const now = new Date();
