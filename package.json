@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-"test:allure": "playwright test && allure generate allure-results -o allure-report --clean"},
+    "test:allure": "playwright test && allure generate allure-results -o allure-report --clean"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,6 +16,18 @@
     "allure-playwright": "^3.7.1"
   },
   "dependencies": {
+    "axios": "^1.16.1",
     "dotenv": "^17.4.2"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreedlondhe/NaukriProfileUpdate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shreedlondhe/NaukriProfileUpdate/issues"
+  },
+  "homepage": "https://github.com/shreedlondhe/NaukriProfileUpdate#readme"
 }
