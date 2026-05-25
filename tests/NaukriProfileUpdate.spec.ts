@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, chromium } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
 import { log } from '../utils/Logs';
@@ -8,7 +8,9 @@ let profilePage: ProfilePage;
 
 test.describe("Naukri Profile Update", async () => {
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeAll(async () => {
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
     loginPage = new LoginPage(page);
     profilePage = new ProfilePage(page);
      log(`${test.info().title} Test started.`);
@@ -19,23 +21,23 @@ test.describe("Naukri Profile Update", async () => {
    
  
 
- test.afterEach(async({page})=>{
+ test.afterAll(async({})=>{
     log(`${test.info().title} Test completed. Closing the browser.`);
 
 
     
  })
 
-  test("Resume Update", async ({ page }) => {
+  test("Resume Update", async ({  }) => {
 
 await profilePage.updateResume();
 
   });
-  test("Profile Heading Update", async ({ page }) => {
+  test("Profile Heading Update", async ({  }) => {
 await profilePage.updateProfileHeading();
 
   });
-    test("Resume Heading Update", async ({ page }) => {
+    test("Resume Heading Update", async ({ }) => {
 await profilePage.updateResumeHeading();
 
   });
