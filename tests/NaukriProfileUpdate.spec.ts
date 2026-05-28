@@ -15,7 +15,7 @@ test.describe("Naukri Profile Update", async () => {
     profilePage = new ProfilePage(page);
      log(`${test.info().title} Test started.`);
        log(`${test.info().title} Test started. Navigating to login page.`);
-      await loginPage.login('Shreedlondhe@gmail.com', 'Shree@6517');
+      await loginPage.login(process.env.LINK_USERNAME!, process.env.LINK_PASSWORD!);
     await profilePage.clickViewProfile();
  })
    

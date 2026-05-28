@@ -17,7 +17,7 @@ class LoginPage {
     }
 
     async login(username: string, password: string){
-        await this.page.goto("https://www.naukri.com/nlogin/login?URL=//www.naukri.com/mnjuser/settings/account");
+        await this.page.goto(process.env.LINK_BASE_URL!);
         await Utils.fill(this.username, username, "Filled username field");
         await Utils.fill(this.password, password, "Filled password field");
         await Utils.click(this.loginButton, "Clicked on login button");
