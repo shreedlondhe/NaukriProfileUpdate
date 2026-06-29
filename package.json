@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:allure": "playwright test && allure generate allure-results -o allure-report --clean"
+    "test:allure": "playwright test && allure generate allure-results -o allure-report --clean",
+     "test:linked": "playwright test -g \"Linked\""
   },
   "keywords": [],
   "author": "",
