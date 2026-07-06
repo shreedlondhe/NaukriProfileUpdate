@@ -6,8 +6,8 @@ test.use({
   storageState: 'storageState/linkedin.json',
 });
 
-for (let run = 1; run <= 5; run++) {
-    let totalRequestSent = 0;
+for (let run = 1; run <= 7; run++) {
+   
 test('LinkedIn Home Page Iteration ' + run, async ({ page }) => {
     test.setTimeout(90000); // Set timeout to 60 seconds
   await page.goto('https://www.linkedin.com/');
@@ -16,7 +16,6 @@ test('LinkedIn Home Page Iteration ' + run, async ({ page }) => {
   await page.locator("(//span[.='My Network'])[2]").click();
   await page.waitForTimeout(5000)
 let people=await page.locator("//*[contains(@aria-label, 'to connect')]").all()
-totalRequestSent+=people.length
 console.log("Total People to Connect : "+people.length)
 for(let i = 1; i < people.length; i++){  
     try{
@@ -32,7 +31,6 @@ catch(e){
 }
 });
 
-console.log("Total Request Sent : "+totalRequestSent)
 }
 
 
