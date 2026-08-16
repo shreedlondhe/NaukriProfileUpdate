@@ -106,7 +106,7 @@ async updateProfileHeading(){
     await Utils.click(this.profileHeadlineTxt, "Clicked on view profile link");
     await Utils.fill(this.profileHeadlineTxt,process.env.LINK_PROFILE_TEXT+await this.getRandomDots(),"Fiiled profile text")
      await Utils.click(this.saveButton, "Clicked on save button");
-
+    await Utils.click(this.crossIconAfterProfileUpdate, "Clicked on cross icon after profile update");
     log("Profile heading updated successfully "+ await this.timestamp());
 }
 
@@ -116,7 +116,7 @@ async updateResumeHeading(){
     await Utils.click(this.resumeHeadlineTxt, "Clicked on profile heading input field");
     await Utils.fill(this.resumeHeadlineTxt, process.env.LINK_RESUNE_TEXT+await this.getRandomDots(), "Filled Resume heading input field");
     await Utils.click(this.saveButton, "Clicked on save button");
-    await Utils.click(this.crossIconAfterProfileUpdate, "Clicked on cross icon after profile update");
+ 
     log("Resume heading updated successfully "+ await this.timestamp());
 }
 async timestamp(): Promise<string> {
