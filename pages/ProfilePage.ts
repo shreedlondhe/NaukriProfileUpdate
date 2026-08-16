@@ -12,7 +12,7 @@ saveButton:Locator;
 editProfileButton:Locator;
 profileHeadlineTxt:Locator;
 //profileText=`Results-driven Software Test Engineer with over 6.6+ years of comprehensive experience in Manual and Automation Testing, specializing in developing robust automation frameworks using Selenium and Playwright with AI. Currently serving as a Senior Test Engineer at Xoriant Solutions, I have demonstrated proficiency in executing complex testing scenarios, including API, UI, and database testing, while enhancing test efficiency through innovative script generation tools like Agentic AI. I possess a strong track record in optimizing regression suites, significantly reducing testing effort, and integrating automation into CI/CD pipelines with Jenkins in Agile environments. My technical acumen includes expertise in TypeScript, Postman, and AWS, coupled with a solid foundation in civil engineering, making me adept at maintaining high-quality standards in software delivery.`
-
+crossIconAfterProfileUpdate:Locator;
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
     this.Resumeheadline=page.locator("//span[.='Resume headline']/following-sibling::span");
@@ -20,6 +20,8 @@ constructor(private page: Page){
     this.saveButton=page.locator("//button[.='Save']");
     this.editProfileButton=page.locator("//span[.='Profile summary']/following-sibling::span[@class='edit icon']");
     this.profileHeadlineTxt=page.locator("#profileSummaryTxt");
+    this.crossIconAfterProfileUpdate=page.locator("//div[@class='profile-updated-container phase-3']/preceding-sibling::div/span");
+
     
 }
 async getRandomDots(): Promise<string> {
@@ -104,6 +106,7 @@ async updateProfileHeading(){
     await Utils.click(this.profileHeadlineTxt, "Clicked on view profile link");
     await Utils.fill(this.profileHeadlineTxt,process.env.LINK_PROFILE_TEXT+await this.getRandomDots(),"Fiiled profile text")
      await Utils.click(this.saveButton, "Clicked on save button");
+
     log("Profile heading updated successfully "+ await this.timestamp());
 }
 
@@ -113,6 +116,7 @@ async updateResumeHeading(){
     await Utils.click(this.resumeHeadlineTxt, "Clicked on profile heading input field");
     await Utils.fill(this.resumeHeadlineTxt, process.env.LINK_RESUNE_TEXT+await this.getRandomDots(), "Filled Resume heading input field");
     await Utils.click(this.saveButton, "Clicked on save button");
+    await Utils.click(this.crossIconAfterProfileUpdate, "Clicked on cross icon after profile update");
     log("Resume heading updated successfully "+ await this.timestamp());
 }
 async timestamp(): Promise<string> {
