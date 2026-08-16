@@ -23,8 +23,7 @@ class LoginPage {
     async login(username: string, password: string){
       
         await this.page.goto(process.env.LINK_BASE_URL!);
-            await this.page.waitForTimeout(9000);
-
+          await this.page.waitForLoadState('networkidle');
         if(await this.viewProfile.isVisible({ timeout: 10000 })){
        console.log("Already logged in, skipping login step");
         }
