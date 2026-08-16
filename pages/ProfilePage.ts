@@ -16,9 +16,9 @@ profileHeadlineTxt:Locator;
 constructor(private page: Page){ 
     this.viewProfile=page.locator(".view-profile-wrapper>a");
     this.Resumeheadline=page.locator("//span[.='Resume headline']/following-sibling::span");
-    this.resumeHeadlineTxt=page.locator("#resumeHeadline");
+    this.resumeHeadlineTxt=page.locator("#resumeHeadlineTxt");
     this.saveButton=page.locator("//button[.='Save']");
-    this.editProfileButton=page.locator("(//span[.='editOneTheme'])[22]");
+    this.editProfileButton=page.locator("//span[.='Profile summary']/following-sibling::span[@class='edit icon']");
     this.profileHeadlineTxt=page.locator("#profileSummaryTxt");
     
 }

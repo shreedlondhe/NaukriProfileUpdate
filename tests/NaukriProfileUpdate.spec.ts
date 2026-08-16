@@ -6,11 +6,14 @@ import { log } from '../utils/Logs';
 let loginPage: LoginPage;
 let profilePage: ProfilePage;
 
+
 test.describe("Naukri Profile Update", async () => {
+
 
   test.beforeAll(async () => {
     const browser = await chromium.launch();
-    const page = await browser.newPage();
+    const context = await browser.newContext({ storageState: 'storageState/naukri.json'});
+    const page = await context.newPage();
     loginPage = new LoginPage(page);
     profilePage = new ProfilePage(page);
      log(`${test.info().title} Test started.`);

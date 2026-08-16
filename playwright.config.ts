@@ -13,6 +13,9 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+     timeout: 60000, // 2 minutes
+
+   
   
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -33,6 +36,8 @@ export default defineConfig({
   use: {
      baseURL: process.env.BASE_URL,
      headless: false,
+     actionTimeout: 30000,
+        navigationTimeout: 60000,
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
