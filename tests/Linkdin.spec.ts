@@ -10,7 +10,7 @@ for (let run = 1; run <= 7; run++) {
    
 test('LinkedIn Home Page Iteration ' + run, async ({ page }) => {
     test.setTimeout(90000); // Set timeout to 60 seconds
-  await page.goto('https://www.linkedin.com/');
+  await page.goto('https://www.linkedin.com/feed/');
   await expect(page).toHaveURL(/linkedin.com/);
   await page.waitForTimeout(5000)
   await page.locator("(//span[.='My Network'])[2]").click();
@@ -49,6 +49,8 @@ catch(e){
 //   await page.goto('https://www.linkedin.com/login/');
 //   await page.getByRole('textbox', { name: 'Email or phone' }).fill('shrnvslndh@gmail.com');
 //   await page.getByRole('textbox', { name: 'Password' }).fill('-------');
+//   //  Shree@6517
+//     await page.waitForTimeout(5000)
 //   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
 //   //await page.getByRole('link', { name: 'My Network, 1 new notification' }).click();
 //   await page.waitForTimeout(5000)
